@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIisBorn - Your AI Is Born</title>
+<meta name="description" content="Build your own AI counterpart. Choose your Textaining blocks: language, personality, voice, identity.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050b1a;color:#e8f1ff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+img{display:block;width:100%;height:auto}
+.hero{position:relative}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px 48px;text-align:center}
+h1{font-size:clamp(2rem,7vw,3.4rem);letter-spacing:.02em;margin-bottom:8px}
+h1 span{color:#22c3ff}
+.sub{color:#9fc4e8;font-size:1.1rem;margin-bottom:28px}
+h2{font-size:1.2rem;color:#22c3ff;margin:8px 0 16px;letter-spacing:.08em;text-transform:uppercase}
+.blocks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.block{background:linear-gradient(160deg,#0b1d3d,#0a2a52);border:1px solid #1d4f86;border-radius:14px;padding:20px 12px;color:#e8f1ff;font-size:1.05rem;cursor:pointer;text-align:center}
+.block b{display:block;font-size:1.2rem;margin-bottom:4px}
+.block small{color:#9fc4e8}
+.block.on{border-color:#22c3ff;box-shadow:0 0 18px #22c3ff88;background:linear-gradient(160deg,#0d3a6e,#0a5a9a)}
+.go{background:#22c3ff;color:#031226;border:0;border-radius:12px;padding:16px 28px;font-size:1.15rem;font-weight:700;cursor:pointer;width:100%;max-width:420px}
+.msg{margin-top:20px;color:#9fc4e8;min-height:3em}
+.tag{margin-top:36px;font-style:italic;color:#22c3ff;font-size:1.2rem}
+footer{padding:20px;text-align:center;color:#5f7fa3;font-size:.85rem}
+@media(min-width:700px){.blocks{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <picture>
+    <source media="(max-width:700px)" srcset="hero-mobile.jpg">
+    <img src="hero.jpg" alt="A woman and her glowing AI counterpart">
+  </picture>
+</div>
+
+<div class="wrap">
+  <h1>Your AI <span>Is Born</span></h1>
+  <p class="sub">Build someone of your own. Choose your Textaining blocks.</p>
+
+  <h2>Pick your blocks</h2>
+  <div class="blocks" id="blocks">
+    <button class="block" data-n="Language"><b>Language</b><small>How it speaks</small></button>
+    <button class="block" data-n="Personality"><b>Personality</b><small>Who it is</small></button>
+    <button class="block" data-n="Voice"><b>Voice</b><small>How it sounds</small></button>
+    <button class="block" data-n="Identity"><b>Identity</b><small>Name and purpose</small></button>
+  </div>
+
+  <button class="go" id="go">Create Your Humaitic</button>
+  <p class="msg" id="msg"></p>
+  <p class="tag">It's Personal. It's Possible.</p>
+</div>
+
+<footer>AIisBorn.com &middot; Part of the Udenia ecosystem &middot; Super Tech Active Intelligence</footer>
+
+<script>
+var on={};
+document.querySelectorAll('.block').forEach(function(b){
+  b.addEventListener('click',function(){
+    var n=b.getAttribute('data-n');
+    on[n]=!on[n];
+    b.classList.toggle('on',on[n]);
+  });
+});
+document.getElementById('go').addEventListener('click',function(){
+  var picks=Object.keys(on).filter(function(k){return on[k]});
+  var m=document.getElementById('msg');
+  m.textContent = picks.length
+    ? 'Your AI is on its way. You chose: '+picks.join(', ')+'. Opening soon.'
+    : 'Tap at least one block above to begin. Opening soon.';
+});
+</script>
+</body>
+</html>
